@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-cookiebot": [
+        "dist/ngx-cookiebot"
+      ],
+      "ngx-cookiebot/*": [
+        "dist/ngx-cookiebot/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
