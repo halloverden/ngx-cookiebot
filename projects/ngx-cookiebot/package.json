@@ -1,6 +1,6 @@
 {
   "name": "@halloverden/ngx-cookiebot",
-  "version": "1.0.7-rc.11",
+  "version": "1.0.7",
   "description": "A simple Angular wrapper for the Cookiebot SDK",
   "keywords": [
     "angular",
