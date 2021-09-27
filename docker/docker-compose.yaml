@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  angular:
+    build:
+      context: ..
+      dockerfile: docker/angular/Dockerfile
+      target: dev
+    user: node
+    env_file:
+      - 'angular/.env'
+    ports:
+      - '4200:4200'
+      - '9876:9876'
+    tty: true
+    volumes:
+      - '..:/usr/src:cached'
