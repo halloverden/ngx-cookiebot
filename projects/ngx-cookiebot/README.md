@@ -12,32 +12,7 @@ npm i @halloverden/ngx-cookiebot -S
 ### Prerequisites
 A Cookiebot account.
 
-### 1. Export / import script
-
-```typescript
-// shared.module.ts
-import { NgxCookiebotModule } from '@halloverden/ngx-cookiebot';
-
-@NgModule({
-  exports: [
-    NgxCookiebotModule
-  ]
-})
-```
-
-```typescript
-// app.module.ts
-import { NgxCookiebotModule } from '@halloverden/ngx-cookiebot';
-import { CookiebotConfig } from '@config/cookiebot.config';
-
-@NgModule({
-  imports: [
-    NgxCookiebotModule.forRoot(CookiebotConfig)
-  ]
-})
-```
-
-### 2. Configure service
+### 1. Configure service
 Configure the service according to the [Cookiebot developer docs](https://www.cookiebot.com/en/developer/).
 
 ```typescript
@@ -52,6 +27,20 @@ export class CookiebotConfig extends NgxCookiebotConfig {
   level?: string;
   type?: string;
 }
+```
+
+### 2. Import package
+
+```typescript
+// app.module.ts
+import { NgxCookiebotModule } from '@halloverden/ngx-cookiebot';
+import { CookiebotConfig } from '@config/cookiebot.config';
+
+@NgModule({
+  imports: [
+    NgxCookiebotModule.forRoot(CookiebotConfig)
+  ]
+})
 ```
 
 ## Usage
@@ -86,7 +75,6 @@ If you prefer to use observables, the NgxCookiebotService exposes an observable 
 |-----------------------------------|:-------------------------:|
 | CookiebotOnConsentReady           | onConsentReady$           |
 | CookiebotOnLoad                   | onLoad$                   |
-| CookiebotOnAccept                 | onAccept$                 |
 | CookiebotOnAccept                 | onAccept$                 |
 | CookiebotOnDecline                | onDecline$                |
 | CookiebotOnDialogInit             | onDialogInit$             |
@@ -129,6 +117,10 @@ Use the component where you want the declaration to appear:
 MIT © [Hallo Verden](https://github.com/halloverden)
 
 ## Change log
+
+### 1.0.8
+- Support Angular 8-12 
+- Changes in documentation
 
 ### 1.0.7
 - Transpile to es5
