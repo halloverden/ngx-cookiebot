@@ -118,6 +118,9 @@ MIT © [Hallo Verden](https://github.com/halloverden)
 
 ## Change log
 
+### 1.0.9
+- Package gets its own repo
+
 ### 1.0.8
 - Support Angular 8-12 
 - Changes in documentation

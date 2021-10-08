@@ -1,6 +1,6 @@
 {
   "name": "@halloverden/ngx-cookiebot",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A simple Angular wrapper for the Cookiebot SDK",
   "keywords": [
     "angular",
@@ -9,9 +9,9 @@
     "cookies",
     "ngx"
   ],
-  "homepage": "https://github.com/halloverden/ngx-library/tree/main/projects/ngx-cookiebot#readme",
+  "homepage": "https://github.com/halloverden/ngx-cookiebot/tree/main/projects/ngx-cookiebot#readme",
   "bugs": {
-    "url": "https://github.com/halloverden/ngx-library/issues"
+    "url": "https://github.com/halloverden/ngx-cookiebot/issues"
   },
   "license": "MIT",
   "author": {
@@ -26,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/halloverden/ngx-library/tree/main/projects/ngx-cookiebot"
+    "url": "https://github.com/halloverden/ngx-cookiebot/tree/main/projects/ngx-cookiebot"
   },
   "peerDependencies": {
     "@angular/common": "8.2.14 - 12",
