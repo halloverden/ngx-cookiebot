@@ -118,6 +118,10 @@ MIT © [Hallo Verden](https://github.com/halloverden)
 
 ## Change log
 
+### 1.0.10
+- Include Angular 13 support (Thanks @remkoboschker)
+- Fix issue where onDialogInitCallback observable uses onDialogDisplayCallback subject (Thanks @mstieranka)
+
 ### 1.0.9
 - Package gets its own repo
 
