@@ -34,7 +34,7 @@ export class NgxCookiebotService {
   onDialogDisplayCallback$ = this._onDialogDisplayCallback$.asObservable();
 
   private readonly _onDialogInitCallback$: Subject<void> = new Subject<void>();
-  onDialogInitCallback$ = this._onDialogDisplayCallback$.asObservable();
+  onDialogInitCallback$ = this._onDialogInitCallback$.asObservable();
 
   private readonly _onLoadCallback$: Subject<void> = new Subject<void>();
   onLoadCallback$ = this._onLoadCallback$.asObservable();
