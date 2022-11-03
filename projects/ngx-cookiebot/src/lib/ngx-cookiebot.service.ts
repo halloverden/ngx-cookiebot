@@ -1,13 +1,13 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, fromEvent, Observable, Subject} from 'rxjs';
-import {NgxCookiebotConfig} from './ngx-cookiebot.config';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, fromEvent, Observable, Subject } from 'rxjs';
+import { NgxCookiebotConfig } from './ngx-cookiebot.config';
 
 function getWindow(): any {
   return window;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 /**
@@ -30,7 +30,8 @@ export class NgxCookiebotService {
   private readonly _onDeclineCallback$: Subject<void> = new Subject<void>();
   onDeclineCallback$ = this._onDeclineCallback$.asObservable();
 
-  private readonly _onDialogDisplayCallback$: Subject<void> = new Subject<void>();
+  private readonly _onDialogDisplayCallback$: Subject<void> =
+    new Subject<void>();
   onDialogDisplayCallback$ = this._onDialogDisplayCallback$.asObservable();
 
   private readonly _onDialogInitCallback$: Subject<void> = new Subject<void>();
@@ -39,10 +40,12 @@ export class NgxCookiebotService {
   private readonly _onLoadCallback$: Subject<void> = new Subject<void>();
   onLoadCallback$ = this._onLoadCallback$.asObservable();
 
-  private readonly _onServiceReady$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private readonly _onServiceReady$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   onServiceReady$ = this._onServiceReady$.asObservable();
 
-  private readonly _onTagsExecutedCallback$: Subject<void> = new Subject<void>();
+  private readonly _onTagsExecutedCallback$: Subject<void> =
+    new Subject<void>();
   onTagsExecutedCallback$ = this._onTagsExecutedCallback$.asObservable();
 
   private readonly _window: any = new Subject<void>();
@@ -61,7 +64,9 @@ export class NgxCookiebotService {
   init(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       try {
-        this._window.document.head.append(this._buildScriptTag());
+        if (this.cookiebotConfig.loadScript !== false) {
+          this._window.document.head.append(this._buildScriptTag());
+        }
       } catch (e) {
         this._onServiceReady$.error(e);
         return resolve();
@@ -97,7 +102,10 @@ export class NgxCookiebotService {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.id = 'Cookiebot';
-    script.src = 'https://consent.cookiebot.com/uc.js';
+    const cdn = this.cookiebotConfig.cdn
+      ? this.cookiebotConfig
+      : 'https://consent.cookiebot.com/';
+    script.src = cdn + 'uc.js';
     script.setAttribute('data-cbid', this.cookiebotConfig.cbId);
 
     if ('auto' === this.cookiebotConfig.blockingMode) {
@@ -178,11 +186,15 @@ export class NgxCookiebotService {
    */
   private _verifyConfig(): void {
     if (!this.cookiebotConfig.cbId) {
-      throw new Error('Missing cbId. Please provide a Cookiebot config with a cbId');
+      throw new Error(
+        'Missing cbId. Please provide a Cookiebot config with a cbId'
+      );
     }
 
     if (!this.cookiebotConfig.blockingMode) {
-      throw new Error('Missing blockingMode. Please provide a Cookiebot config with blockingMode');
+      throw new Error(
+        'Missing blockingMode. Please provide a Cookiebot config with blockingMode'
+      );
     }
   }
 }
