@@ -28,7 +28,7 @@ export class NgxCookiebotComponent implements OnInit {
     script.type = 'text/javascript';
     script.id = 'CookieDeclaration';
     const cdn = this._ngxCookiebotConfig.cdn
-      ? this._ngxCookiebotConfig
+      ? this._ngxCookiebotConfig.cdn
       : 'https://consent.cookiebot.com/';
     script.src = cdn + this._ngxCookiebotConfig.cbId + '/cd.js';
     script.async = true;
