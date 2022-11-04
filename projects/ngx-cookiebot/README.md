@@ -13,7 +13,7 @@ npm i @halloverden/ngx-cookiebot -S
 A Cookiebot account.
 
 ### 1. Configure service
-Configure the service according to the [Cookiebot developer docs](https://www.cookiebot.com/en/developer/).
+Configure the service according to the [Cookiebot developer docs](https://www.cookiebot.com/en/developer/). The package also ships with custom config not defined in the Cookiebot developer docs. See below for deets.
 
 ```typescript
 // cookiebot.config.ts
@@ -22,20 +22,29 @@ import { NgxCookiebotConfig } from '@halloverden/ngx-cookiebot';
 export class CookiebotConfig extends NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
   cbId: string;
-  loadScript?: boolean;
-  cdn?: string;
+  cdn: 'com' | 'eu' | string;
   culture?: string;
   framework?: string;
   level?: string;
+  loadScript: boolean;
   type?: string;
 }
 ```
-#### *cdn*
-For using the strict European version of cookiebot, (not sending any data to a US based company) it is possible to use the .eu version of the CDN: https://support.cookiebot.com/hc/en-us/articles/4530208762396-Cookiebot-CMP-European-CDN-solution
+#### Custom config
+In addition to the config defined in the Cookiebot developer docs, the package also supports this custom config:
 
-If no value for the cdn is provided it falls back to the .com version.
-#### *loadScript*
-The loadScript is for deciding whether ngx-cookiebot should load the uc.js script or not, we encountered issues in loading time, which siginificantly affected the page loading time. If that happens for you also we recommend to set the loadScript value to false and embed the Cookiebot Script into your index.html and use the module for everything else but the script embedding. If no value is provided ngx-cookiebot will load the script
+##### *cdn*
+Choose what version of the cookiebot CDN you want to use (https://support.cookiebot.com/hc/en-us/articles/4530208762396-Cookiebot-CMP-European-CDN-solution):
+
+| Config |          CDN          |
+|--------|:---------------------:|
+| com    | consent.cookiebot.com |
+| eu     | consent.cookiebot.eu  |
+
+##### *loadScript*
+The package injects the script in the head tag through Angular. This can lead to high script loading time. If your app is time sensitive, you can opt out of the package setting the script tag, and set it yourself. You can use the module for everything else but the script embedding.
+
+NB! If you set this config to false, no other config parameter will have effect, and you need to config them yourself.
 
 ### 2. Import package
 

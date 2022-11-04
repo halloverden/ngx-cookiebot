@@ -4,10 +4,10 @@
 export abstract class NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
   cbId: string;
-  loadScript?: boolean;
-  cdn?: string;
+  cdn: 'com' | 'eu' | string;
   culture?: string;
   framework?: string;
   level?: string;
+  loadScript: boolean;
   type?: string;
 }

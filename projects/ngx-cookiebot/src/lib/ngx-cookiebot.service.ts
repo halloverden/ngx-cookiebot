@@ -54,7 +54,6 @@ export class NgxCookiebotService {
    *
    */
   constructor(private cookiebotConfig: NgxCookiebotConfig) {
-    this._verifyConfig();
     this._window = getWindow();
   }
 
@@ -62,6 +61,8 @@ export class NgxCookiebotService {
    *
    */
   init(): Promise<void> {
+    this._verifyConfig();
+
     return new Promise<void>((resolve, reject) => {
       try {
         if (this.cookiebotConfig.loadScript !== false) {
@@ -102,10 +103,7 @@ export class NgxCookiebotService {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.id = 'Cookiebot';
-    const cdn = this.cookiebotConfig.cdn
-      ? this.cookiebotConfig
-      : 'https://consent.cookiebot.com/';
-    script.src = cdn + 'uc.js';
+    script.src = 'https://consent.cookiebot.' + this.cookiebotConfig.cdn + '/uc.js';
     script.setAttribute('data-cbid', this.cookiebotConfig.cbId);
 
     if ('auto' === this.cookiebotConfig.blockingMode) {
@@ -185,15 +183,32 @@ export class NgxCookiebotService {
    *
    */
   private _verifyConfig(): void {
-    if (!this.cookiebotConfig.cbId) {
+    if (typeof this.cookiebotConfig.loadScript !== 'boolean') {
       throw new Error(
-        'Missing cbId. Please provide a Cookiebot config with a cbId'
+        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
-    if (!this.cookiebotConfig.blockingMode) {
+    // Nothing to validate if script is manually set
+    if (this.cookiebotConfig.loadScript === false) {
+      return;
+    }
+
+    if (!this.cookiebotConfig.cdn || !['com', 'eu'].includes(this.cookiebotConfig.cdn)) {
       throw new Error(
-        'Missing blockingMode. Please provide a Cookiebot config with blockingMode'
+        'Wrong cdn config value. Please provide a correct value in the Cookiebot config'
+      );
+    }
+
+    if (!this.cookiebotConfig.cbId) {
+      throw new Error(
+        'Wrong cbId config value. Please provide a correct value in the Cookiebot config'
+      );
+    }
+
+    if (!this.cookiebotConfig.blockingMode || !['auto', 'manual'].includes(this.cookiebotConfig.blockingMode)) {
+      throw new Error(
+        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config'
       );
     }
   }

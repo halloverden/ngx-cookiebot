@@ -1,5 +1,9 @@
 # Change log
 
+## 2.0.0
+- Support loading script manually to shorten load time (Thanks @TanjaBayer)
+- Support different CDNs (Thanks @TanjaBayer)
+
 ## 1.1.0
 - Support Angular 8.2.0 - 14
 - Set "private": false in package.json
