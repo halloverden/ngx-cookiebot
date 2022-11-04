@@ -22,12 +22,20 @@ import { NgxCookiebotConfig } from '@halloverden/ngx-cookiebot';
 export class CookiebotConfig extends NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
   cbId: string;
+  loadScript?: boolean;
+  cdn?: string;
   culture?: string;
   framework?: string;
   level?: string;
   type?: string;
 }
 ```
+#### *cdn*
+For using the strict European version of cookiebot, (not sending any data to a US based company) it is possible to use the .eu version of the CDN: https://support.cookiebot.com/hc/en-us/articles/4530208762396-Cookiebot-CMP-European-CDN-solution
+
+If no value for the cdn is provided it falls back to the .com version.
+#### *loadScript*
+The loadScript is for deciding whether ngx-cookiebot should load the uc.js script or not, we encountered issues in loading time, which siginificantly affected the page loading time. If that happens for you also we recommend to set the loadScript value to false and embed the Cookiebot Script into your index.html and use the module for everything else but the script embedding. If no value is provided ngx-cookiebot will load the script
 
 ### 2. Import package
 
