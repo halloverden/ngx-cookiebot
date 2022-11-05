@@ -34,7 +34,6 @@ export class NgxCookiebotComponent implements OnInit {
       this._ngxCookiebotConfig.cbId +
       '/cd.js';
     script.async = true;
-    script.type = 'module';
     this.ngxCookiebotElement.nativeElement.append(script);
   }
 }
