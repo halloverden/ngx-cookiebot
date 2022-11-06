@@ -27,12 +27,13 @@ export class NgxCookiebotComponent implements OnInit {
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.id = 'CookieDeclaration';
-    const cdn = this._ngxCookiebotConfig.cdn
-      ? this._ngxCookiebotConfig.cdn
-      : 'https://consent.cookiebot.com/';
-    script.src = cdn + this._ngxCookiebotConfig.cbId + '/cd.js';
+    script.src =
+      'https://consent.cookiebot.' +
+      this._ngxCookiebotConfig.cdn +
+      '/' +
+      this._ngxCookiebotConfig.cbId +
+      '/cd.js';
     script.async = true;
-    script.type = 'module';
     this.ngxCookiebotElement.nativeElement.append(script);
   }
 }
