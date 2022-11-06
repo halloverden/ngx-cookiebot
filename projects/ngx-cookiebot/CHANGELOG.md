@@ -1,5 +1,8 @@
 # Change log
 
+## 2.0.1
+- Fixed a bug where we didn't use the new CDN setting in the component (Thanks @TanjaBayer
+
 ## 2.0.0
 - Support loading script manually to shorten load time (Thanks @TanjaBayer)
 - Support different CDNs (Thanks @TanjaBayer)
