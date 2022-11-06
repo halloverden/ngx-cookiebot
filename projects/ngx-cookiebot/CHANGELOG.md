@@ -1,6 +1,9 @@
 # Change log
 
-## 2.0.1
+## 2.0.3
+- Updated docs
+
+## 2.0.2
 - Fixed a bug where we didn't use the new CDN setting in the component (Thanks @TanjaBayer
 
 ## 2.0.0
