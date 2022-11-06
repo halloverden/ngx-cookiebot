@@ -54,6 +54,7 @@ export class NgxCookiebotService {
    *
    */
   constructor(private cookiebotConfig: NgxCookiebotConfig) {
+    this._verifyConfig();
     this._window = getWindow();
   }
 
@@ -61,8 +62,6 @@ export class NgxCookiebotService {
    *
    */
   init(): Promise<void> {
-    this._verifyConfig();
-
     return new Promise<void>((resolve, reject) => {
       try {
         if (this.cookiebotConfig.loadScript !== false) {
