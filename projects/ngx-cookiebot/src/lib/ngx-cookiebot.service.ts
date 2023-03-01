@@ -126,6 +126,22 @@ export class NgxCookiebotService {
     if (this.cookiebotConfig.type) {
       script.setAttribute('data-type', this.cookiebotConfig.type);
     }
+    
+    if (this.cookiebotConfig.widgetEnabled) {
+      script.setAttribute('data-widget-enabled', this.cookiebotConfig.widgetEnabled ? 'true' : 'false');
+    }
+    
+    if (this.cookiebotConfig.widgetPosition) {
+      script.setAttribute('data-widget-position', this.cookiebotConfig.widgetPosition);
+    }
+    
+    if (this.cookiebotConfig.widgetDistanceVertical) {
+      script.setAttribute('data-widget-distance-vertical', this.cookiebotConfig.widgetDistanceVertical + '');
+    }
+    
+    if (this.cookiebotConfig.widgetDistanceHorizontal) {
+      script.setAttribute('ddata-widget-distance-horizontal', this.cookiebotConfig.widgetDistanceHorizontal + '');
+    }
 
     return script;
   }
