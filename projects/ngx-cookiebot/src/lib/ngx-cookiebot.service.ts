@@ -136,11 +136,11 @@ export class NgxCookiebotService {
     }
     
     if (this.cookiebotConfig.widgetDistanceVertical) {
-      script.setAttribute('data-widget-distance-vertical', this.cookiebotConfig.widgetDistanceVertical + '');
+      script.setAttribute('data-widget-distance-vertical', this.cookiebotConfig.widgetDistanceVertical.toString());
     }
     
     if (this.cookiebotConfig.widgetDistanceHorizontal) {
-      script.setAttribute('ddata-widget-distance-horizontal', this.cookiebotConfig.widgetDistanceHorizontal + '');
+      script.setAttribute('data-widget-distance-horizontal', this.cookiebotConfig.widgetDistanceHorizontal.toString());
     }
 
     return script;
