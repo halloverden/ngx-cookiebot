@@ -1,10 +1,13 @@
 # Change log
 
+## 2.1.0
+- Added support for additional script tag options (Thanks @wiseguy1394)
+
 ## 2.0.3
 - Updated docs
 
 ## 2.0.2
-- Fixed a bug where we didn't use the new CDN setting in the component (Thanks @TanjaBayer
+- Fixed a bug where we didn't use the new CDN setting in the component (Thanks @TanjaBayer)
 
 ## 2.0.0
 - Support loading script manually to shorten load time (Thanks @TanjaBayer)
