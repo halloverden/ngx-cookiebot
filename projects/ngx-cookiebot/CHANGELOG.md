@@ -1,6 +1,6 @@
 # Change log
 
-## 2.1.0
+## 2.2.0
 - Added support for additional script tag options (Thanks @wiseguy1394)
 
 ## 2.0.3
