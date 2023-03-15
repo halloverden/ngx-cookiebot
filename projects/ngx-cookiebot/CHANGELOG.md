@@ -1,5 +1,8 @@
 # Change log
 
+## 2.3.0
+- Support Angular 8.2.0 - 15 (Thanks @davidgvf)
+
 ## 2.2.0
 - Added support for additional script tag options (Thanks @wiseguy1394)
 
