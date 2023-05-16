@@ -35,6 +35,10 @@ export class CookiebotConfig extends NgxCookiebotConfig {
   level?: string;
   loadScript: boolean;
   type?: string;
+  widgetEnabled?: boolean;
+  widgetPosition?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | string;
+  widgetDistanceVertical?: number;
+  widgetDistanceHorizontal?: number;
 }
 ```
 #### Custom config
