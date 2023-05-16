@@ -2,6 +2,13 @@
 
 An Angular wrapper around the [Cookiebot](https://www.cookiebot.com/) SDK.
 
+## Angular support
+
+| Version | Angular support |
+|---------|:---------------:|
+| 3.0.0   |     ^16.0.0     |
+| 2.3.0   |     8.2.14 - 15 |
+
 ## Installation
 ```
 npm i @halloverden/ngx-cookiebot -S

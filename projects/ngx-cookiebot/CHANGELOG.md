@@ -1,7 +1,7 @@
 # Change log
 
 ## 3.0.0
-- Build library with Ivy (supporting up to version 16)
+- Supporting Angular ^16.0.0 (Thanks JesseDeBruijne) **NB! Dropping support for older versions** 
 
 ## 2.3.0
 - Support Angular 8.2.0 - 15 (Thanks @davidgvf)
