@@ -10,7 +10,7 @@ import {NgxCookiebotService} from './ngx-cookiebot.service';
     NgxCookiebotComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
     NgxCookiebotComponent
