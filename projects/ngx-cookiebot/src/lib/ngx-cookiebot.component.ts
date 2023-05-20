@@ -5,7 +5,7 @@ import { NgxCookiebotConfig } from './ngx-cookiebot.config';
   // tslint:disable-next-line:component-selector
   selector: 'ngx-cookiebot-declaration',
   template: '<div #ngxCookiebot></div>',
-  styles: [':host {display: block}'],
+  styles: [':host {display: block}']
 })
 
 /**

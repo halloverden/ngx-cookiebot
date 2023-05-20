@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NgxCookiebotComponent } from './ngx-cookiebot.component';
+import { NgxCookiebotConfig } from './ngx-cookiebot.config';
 
 describe('NgxCookiebotComponent', () => {
   let component: NgxCookiebotComponent;
@@ -8,7 +9,13 @@ describe('NgxCookiebotComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NgxCookiebotComponent ]
+      declarations: [ NgxCookiebotComponent ],
+      providers: [
+        {
+          provide: NgxCookiebotConfig,
+          useValue: {}
+        }
+      ]
     })
     .compileComponents();
   }));
