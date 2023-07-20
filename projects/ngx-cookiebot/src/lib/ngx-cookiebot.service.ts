@@ -8,7 +8,7 @@ function getWindow(): any {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 
 /**
@@ -67,7 +67,7 @@ export class NgxCookiebotService {
    */
   init(): Promise<void> {
     if (isPlatformBrowser(this._platformId)) {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         try {
           if (this.cookiebotConfig.loadScript !== false) {
             this._window.document.head.append(this._buildScriptTag());
@@ -99,7 +99,7 @@ export class NgxCookiebotService {
         return resolve();
       });
     } else {
-      return new Promise<void>((resolve, reject) => {
+      return new Promise<void>((resolve) => {
         resolve();
       });
     }
@@ -160,6 +160,7 @@ export class NgxCookiebotService {
    *
    */
   private _setUpCallbacks(): void {
+    /* eslint-disable @typescript-eslint/ban-ts-comment */
     // @ts-ignore
     window.CookiebotCallback_OnAccept = () => {
       this._onAcceptCallback$.next();
@@ -189,6 +190,7 @@ export class NgxCookiebotService {
     window.CookiebotCallback_OnTagsExecuted = () => {
       this._onTagsExecutedCallback$.next();
     };
+    /* eslint-enable @typescript-eslint/ban-ts-comment */
   }
 
   /**
@@ -210,7 +212,7 @@ export class NgxCookiebotService {
   private _verifyConfig(): void {
     if (typeof this.cookiebotConfig.loadScript !== 'boolean') {
       throw new Error(
-        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config',
+        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
@@ -221,19 +223,19 @@ export class NgxCookiebotService {
 
     if (!this.cookiebotConfig.cdn || !['com', 'eu'].includes(this.cookiebotConfig.cdn)) {
       throw new Error(
-        'Wrong cdn config value. Please provide a correct value in the Cookiebot config',
+        'Wrong cdn config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
     if (!this.cookiebotConfig.cbId) {
       throw new Error(
-        'Wrong cbId config value. Please provide a correct value in the Cookiebot config',
+        'Wrong cbId config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
     if (!this.cookiebotConfig.blockingMode || !['auto', 'manual'].includes(this.cookiebotConfig.blockingMode)) {
       throw new Error(
-        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config',
+        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config'
       );
     }
   }
