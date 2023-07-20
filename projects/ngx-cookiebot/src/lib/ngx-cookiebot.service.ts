@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, fromEvent, Observable, Subject } from 'rxjs';
 import { NgxCookiebotConfig } from './ngx-cookiebot.config';
+import { isPlatformBrowser } from '@angular/common';
 
 function getWindow(): any {
   return window;
@@ -53,46 +54,55 @@ export class NgxCookiebotService {
   /**
    *
    */
-  constructor(private cookiebotConfig: NgxCookiebotConfig) {
-    this._verifyConfig();
-    this._window = getWindow();
+  constructor(private cookiebotConfig: NgxCookiebotConfig,
+              @Inject(PLATFORM_ID) private _platformId: object) {
+    if (isPlatformBrowser(this._platformId)) {
+      this._verifyConfig();
+      this._window = getWindow();
+    }
   }
 
   /**
    *
    */
   init(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      try {
-        if (this.cookiebotConfig.loadScript !== false) {
-          this._window.document.head.append(this._buildScriptTag());
+    if (isPlatformBrowser(this._platformId)) {
+      return new Promise<void>((resolve, reject) => {
+        try {
+          if (this.cookiebotConfig.loadScript !== false) {
+            this._window.document.head.append(this._buildScriptTag());
+          }
+        } catch (e) {
+          this._onServiceReady$.error(e);
+          return resolve();
         }
-      } catch (e) {
-        this._onServiceReady$.error(e);
-        return resolve();
-      }
 
-      const scriptInjectionTimeout = setTimeout(() => {
-        this._onServiceReady$.error('Timed out');
-        clearInterval(scriptInjectionCheckInterval);
-      }, 30000); // 30 seconds
-
-      const scriptInjectionCheckInterval = setInterval(() => {
-        // The Cookiebot people added and ID to the script tag
-        // with the same name as the object it exposes
-        // https://twitter.com/jacksdrobinson/status/1188152645032255491
-        if (!(this._window.Cookiebot instanceof HTMLElement)) {
-          this.cookiebot = this._window.Cookiebot;
-          this._setUpCallbacks();
-          this._setUpEventHandlers();
+        const scriptInjectionTimeout = setTimeout(() => {
+          this._onServiceReady$.error('Timed out');
           clearInterval(scriptInjectionCheckInterval);
-          clearTimeout(scriptInjectionTimeout);
-          this._onServiceReady$.next(true);
-        }
-      }, 10);
+        }, 30000); // 30 seconds
 
-      return resolve();
-    });
+        const scriptInjectionCheckInterval = setInterval(() => {
+          // The Cookiebot people added and ID to the script tag
+          // with the same name as the object it exposes
+          // https://twitter.com/jacksdrobinson/status/1188152645032255491
+          if (!(this._window.Cookiebot instanceof HTMLElement)) {
+            this.cookiebot = this._window.Cookiebot;
+            this._setUpCallbacks();
+            this._setUpEventHandlers();
+            clearInterval(scriptInjectionCheckInterval);
+            clearTimeout(scriptInjectionTimeout);
+            this._onServiceReady$.next(true);
+          }
+        }, 10);
+
+        return resolve();
+      });
+    } else {
+      return new Promise<void>((resolve, reject) => {
+        resolve();
+      });
+    }
   }
 
   /**
@@ -126,19 +136,19 @@ export class NgxCookiebotService {
     if (this.cookiebotConfig.type) {
       script.setAttribute('data-type', this.cookiebotConfig.type);
     }
-    
+
     if (this.cookiebotConfig.widgetEnabled) {
       script.setAttribute('data-widget-enabled', this.cookiebotConfig.widgetEnabled ? 'true' : 'false');
     }
-    
+
     if (this.cookiebotConfig.widgetPosition) {
       script.setAttribute('data-widget-position', this.cookiebotConfig.widgetPosition);
     }
-    
+
     if (this.cookiebotConfig.widgetDistanceVertical) {
       script.setAttribute('data-widget-distance-vertical', this.cookiebotConfig.widgetDistanceVertical.toString());
     }
-    
+
     if (this.cookiebotConfig.widgetDistanceHorizontal) {
       script.setAttribute('data-widget-distance-horizontal', this.cookiebotConfig.widgetDistanceHorizontal.toString());
     }
@@ -200,7 +210,7 @@ export class NgxCookiebotService {
   private _verifyConfig(): void {
     if (typeof this.cookiebotConfig.loadScript !== 'boolean') {
       throw new Error(
-        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config'
+        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config',
       );
     }
 
@@ -211,19 +221,19 @@ export class NgxCookiebotService {
 
     if (!this.cookiebotConfig.cdn || !['com', 'eu'].includes(this.cookiebotConfig.cdn)) {
       throw new Error(
-        'Wrong cdn config value. Please provide a correct value in the Cookiebot config'
+        'Wrong cdn config value. Please provide a correct value in the Cookiebot config',
       );
     }
 
     if (!this.cookiebotConfig.cbId) {
       throw new Error(
-        'Wrong cbId config value. Please provide a correct value in the Cookiebot config'
+        'Wrong cbId config value. Please provide a correct value in the Cookiebot config',
       );
     }
 
     if (!this.cookiebotConfig.blockingMode || !['auto', 'manual'].includes(this.cookiebotConfig.blockingMode)) {
       throw new Error(
-        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config'
+        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config',
       );
     }
   }
