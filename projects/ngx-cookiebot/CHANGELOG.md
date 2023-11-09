@@ -1,7 +1,10 @@
 # Change log
 
+## 3.1.0
+- Added support for SSR (Thanks @Maretzky85)
+
 ## 3.0.0
-- Supporting Angular ^16.0.0 (Thanks JesseDeBruijne) **NB! Dropping support for older versions** 
+- Supporting Angular ^16.0.0 (Thanks @JesseDeBruijne) **NB! Dropping support for older versions** 
 
 ## 2.3.0
 - Support Angular 8.2.0 - 15 (Thanks @davidgvf)

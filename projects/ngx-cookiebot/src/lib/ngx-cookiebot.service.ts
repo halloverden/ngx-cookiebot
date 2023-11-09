@@ -1,7 +1,7 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, fromEvent, Observable, Subject } from 'rxjs';
-import { NgxCookiebotConfig } from './ngx-cookiebot.config';
-import { isPlatformBrowser } from '@angular/common';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
+import {BehaviorSubject, fromEvent, Observable, Subject} from 'rxjs';
+import {NgxCookiebotConfig} from './ngx-cookiebot.config';
+import {isPlatformBrowser} from '@angular/common';
 
 function getWindow(): any {
   return window;
@@ -66,43 +66,43 @@ export class NgxCookiebotService {
    *
    */
   init(): Promise<void> {
-    if (isPlatformBrowser(this._platformId)) {
-      return new Promise<void>((resolve) => {
-        try {
-          if (this.cookiebotConfig.loadScript !== false) {
-            this._window.document.head.append(this._buildScriptTag());
-          }
-        } catch (e) {
-          this._onServiceReady$.error(e);
-          return resolve();
-        }
-
-        const scriptInjectionTimeout = setTimeout(() => {
-          this._onServiceReady$.error('Timed out');
-          clearInterval(scriptInjectionCheckInterval);
-        }, 30000); // 30 seconds
-
-        const scriptInjectionCheckInterval = setInterval(() => {
-          // The Cookiebot people added and ID to the script tag
-          // with the same name as the object it exposes
-          // https://twitter.com/jacksdrobinson/status/1188152645032255491
-          if (!(this._window.Cookiebot instanceof HTMLElement)) {
-            this.cookiebot = this._window.Cookiebot;
-            this._setUpCallbacks();
-            this._setUpEventHandlers();
-            clearInterval(scriptInjectionCheckInterval);
-            clearTimeout(scriptInjectionTimeout);
-            this._onServiceReady$.next(true);
-          }
-        }, 10);
-
-        return resolve();
-      });
-    } else {
+    if (!isPlatformBrowser(this._platformId)) {
       return new Promise<void>((resolve) => {
         resolve();
       });
     }
+
+    return new Promise<void>((resolve) => {
+      try {
+        if (this.cookiebotConfig.loadScript !== false) {
+          this._window.document.head.append(this._buildScriptTag());
+        }
+      } catch (e) {
+        this._onServiceReady$.error(e);
+        return resolve();
+      }
+
+      const scriptInjectionTimeout = setTimeout(() => {
+        this._onServiceReady$.error('Timed out');
+        clearInterval(scriptInjectionCheckInterval);
+      }, 30000); // 30 seconds
+
+      const scriptInjectionCheckInterval = setInterval(() => {
+        // The Cookiebot people added and ID to the script tag
+        // with the same name as the object it exposes
+        // https://twitter.com/jacksdrobinson/status/1188152645032255491
+        if (!(this._window.Cookiebot instanceof HTMLElement)) {
+          this.cookiebot = this._window.Cookiebot;
+          this._setUpCallbacks();
+          this._setUpEventHandlers();
+          clearInterval(scriptInjectionCheckInterval);
+          clearTimeout(scriptInjectionTimeout);
+          this._onServiceReady$.next(true);
+        }
+      }, 10);
+
+      return resolve();
+    });
   }
 
   /**
