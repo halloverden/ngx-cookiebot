@@ -3,6 +3,7 @@
  */
 export abstract class NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
+  consentMode?: 'disabled';
   cbId: string;
   cdn: 'com' | 'eu' | string;
   culture?: string;

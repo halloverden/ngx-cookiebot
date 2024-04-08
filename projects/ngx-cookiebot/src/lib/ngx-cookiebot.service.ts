@@ -121,6 +121,10 @@ export class NgxCookiebotService {
       script.async = true;
     }
 
+    if ('disabled' === this.cookiebotConfig.consentMode) {
+      script.setAttribute('data-consentmode', this.cookiebotConfig.consentMode);
+    }
+
     if (this.cookiebotConfig.culture) {
       script.setAttribute('data-culture', this.cookiebotConfig.culture);
     }

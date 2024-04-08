@@ -28,6 +28,7 @@ import { NgxCookiebotConfig } from '@halloverden/ngx-cookiebot';
 
 export class CookiebotConfig extends NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
+  consentMode: 'disabled';
   cbId: string;
   cdn: 'com' | 'eu' | string;
   culture?: string;
