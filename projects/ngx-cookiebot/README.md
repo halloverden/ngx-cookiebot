@@ -6,8 +6,9 @@ An Angular wrapper around the [Cookiebot](https://www.cookiebot.com/) SDK.
 
 | Version | Angular support |
 |---------|:---------------:|
-| 3.0.0   |     ^16.0.0     |
-| 2.3.0   |     8.2.14 - 15 |
+| ^4.0.0  |     ^17.0.0     |
+| ^3.0.0  |     ^16.0.0     |
+| 2.3.0   |   8.2.14 - 15   |
 
 ## Installation
 ```
@@ -28,7 +29,7 @@ import { NgxCookiebotConfig } from '@halloverden/ngx-cookiebot';
 
 export class CookiebotConfig extends NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
-  consentMode: 'disabled';
+  consentMode?: 'disabled';
   cbId: string;
   cdn: 'com' | 'eu' | string;
   culture?: string;
