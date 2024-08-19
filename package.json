@@ -2,11 +2,9 @@
   "name": "ngx-cookiebot",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration production",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lib:build": "ng build @halloverden/ngx-cookiebot",
+    "lint": "prettier ./",
+    "lint:fix": "prettier -w ./"
   },
   "private": true,
   "dependencies": {

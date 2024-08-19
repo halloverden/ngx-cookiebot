@@ -1,4 +1,4 @@
-import {NgxCookiebotService} from './ngx-cookiebot.service';
+import { NgxCookiebotService } from './ngx-cookiebot.service';
 
 export function ngxCookiebotFactory(cookiebotService: NgxCookiebotService): () => Promise<void> {
   return (): Promise<void> => {

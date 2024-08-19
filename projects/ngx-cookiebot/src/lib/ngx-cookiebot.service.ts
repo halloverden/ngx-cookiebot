@@ -20,14 +20,11 @@ export class NgxCookiebotService {
   #platformId = inject(PLATFORM_ID);
   #onAcceptCallback$: Subject<void> = new Subject<void>();
   #onDeclineCallback$: Subject<void> = new Subject<void>();
-  #onDialogDisplayCallback$: Subject<void> =
-    new Subject<void>();
+  #onDialogDisplayCallback$: Subject<void> = new Subject<void>();
   #onDialogInitCallback$: Subject<void> = new Subject<void>();
   #onLoadCallback$: Subject<void> = new Subject<void>();
-  #onServiceReady$: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(false);
-  #onTagsExecutedCallback$: Subject<void> =
-    new Subject<void>();
+  #onServiceReady$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  #onTagsExecutedCallback$: Subject<void> = new Subject<void>();
   #window: any = new Subject<void>();
 
   cookiebot: any;
@@ -127,7 +124,10 @@ export class NgxCookiebotService {
     }
 
     if (this.#cookiebotConfig.widgetEnabled) {
-      script.setAttribute('data-widget-enabled', this.#cookiebotConfig.widgetEnabled ? 'true' : 'false');
+      script.setAttribute(
+        'data-widget-enabled',
+        this.#cookiebotConfig.widgetEnabled ? 'true' : 'false'
+      );
     }
 
     if (this.#cookiebotConfig.widgetPosition) {
@@ -135,11 +135,17 @@ export class NgxCookiebotService {
     }
 
     if (this.#cookiebotConfig.widgetDistanceVertical) {
-      script.setAttribute('data-widget-distance-vertical', this.#cookiebotConfig.widgetDistanceVertical.toString());
+      script.setAttribute(
+        'data-widget-distance-vertical',
+        this.#cookiebotConfig.widgetDistanceVertical.toString()
+      );
     }
 
     if (this.#cookiebotConfig.widgetDistanceHorizontal) {
-      script.setAttribute('data-widget-distance-horizontal', this.#cookiebotConfig.widgetDistanceHorizontal.toString());
+      script.setAttribute(
+        'data-widget-distance-horizontal',
+        this.#cookiebotConfig.widgetDistanceHorizontal.toString()
+      );
     }
 
     return script;
@@ -192,7 +198,7 @@ export class NgxCookiebotService {
   #verifyConfig(): void {
     if (typeof this.#cookiebotConfig.loadScript !== 'boolean') {
       throw new Error(
-        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config',
+        'Wrong loadScript config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
@@ -203,19 +209,22 @@ export class NgxCookiebotService {
 
     if (!this.#cookiebotConfig.cdn || !['com', 'eu'].includes(this.#cookiebotConfig.cdn)) {
       throw new Error(
-        'Wrong cdn config value. Please provide a correct value in the Cookiebot config',
+        'Wrong cdn config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
     if (!this.#cookiebotConfig.cbId) {
       throw new Error(
-        'Wrong cbId config value. Please provide a correct value in the Cookiebot config',
+        'Wrong cbId config value. Please provide a correct value in the Cookiebot config'
       );
     }
 
-    if (!this.#cookiebotConfig.blockingMode || !['auto', 'manual'].includes(this.#cookiebotConfig.blockingMode)) {
+    if (
+      !this.#cookiebotConfig.blockingMode ||
+      !['auto', 'manual'].includes(this.#cookiebotConfig.blockingMode)
+    ) {
       throw new Error(
-        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config',
+        'Wrong blockingMode config value. Please provide a correct value in the Cookiebot config'
       );
     }
   }

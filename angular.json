@@ -27,9 +27,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/ngx-cookiebot/**/*.ts"
-            ]
+            "lintFilePatterns": ["projects/ngx-cookiebot/**/*.ts"]
           }
         }
       }
