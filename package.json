@@ -3,6 +3,7 @@
   "scripts": {
     "ng": "ng",
     "lib:build": "ng build @halloverden/ngx-cookiebot",
+    "lib:publish": "cd dist/ngx-cookiebot && npm publish",
     "prettier": "prettier ./",
     "prettier:fix": "prettier -w ./"
   },
