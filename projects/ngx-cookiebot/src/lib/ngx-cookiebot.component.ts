@@ -1,37 +1,37 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgxCookiebotConfig } from './ngx-cookiebot.config';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'ngx-cookiebot-declaration',
   template: '<div #ngxCookiebot></div>',
-  styles: [':host {display: block}']
+  styles: [':host { display: block }'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
 })
-
-/**
- *
- */
 export class NgxCookiebotComponent implements OnInit {
+  #ngxCookiebotConfig = inject(NgxCookiebotConfig);
+
   @ViewChild('ngxCookiebot', { static: true })
   ngxCookiebotElement: ElementRef;
 
-  /**
-   *
-   */
-  constructor(private _ngxCookiebotConfig: NgxCookiebotConfig) {}
-
-  /***
-   *
-   */
   ngOnInit(): void {
     const script = document.createElement('script');
+
     script.type = 'text/javascript';
     script.id = 'CookieDeclaration';
     script.src =
       'https://consent.cookiebot.' +
-      this._ngxCookiebotConfig.cdn +
+      this.#ngxCookiebotConfig.cdn +
       '/' +
-      this._ngxCookiebotConfig.cbId +
+      this.#ngxCookiebotConfig.cbId +
       '/cd.js';
     script.async = true;
     this.ngxCookiebotElement.nativeElement.append(script);

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-cookiebot": {
+    "@halloverden/ngx-cookiebot": {
       "projectType": "library",
       "root": "projects/ngx-cookiebot",
       "sourceRoot": "projects/ngx-cookiebot/src",
@@ -27,9 +27,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "projects/ngx-cookiebot/**/*.ts"
-            ]
+            "lintFilePatterns": ["projects/ngx-cookiebot/**/*.ts"]
           }
         }
       }

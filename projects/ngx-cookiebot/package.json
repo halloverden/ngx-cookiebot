@@ -1,6 +1,6 @@
 {
   "name": "@halloverden/ngx-cookiebot",
-  "version": "4.0.0",
+  "version": "5.0.0-rc.1",
   "description": "A simple Angular wrapper for the Cookiebot SDK",
   "private": false,
   "keywords": [
@@ -30,7 +30,7 @@
     "url": "https://github.com/halloverden/ngx-cookiebot/tree/main/projects/ngx-cookiebot"
   },
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   }
 }
