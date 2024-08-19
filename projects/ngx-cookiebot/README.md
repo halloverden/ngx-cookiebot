@@ -6,6 +6,7 @@ An Angular wrapper around the [Cookiebot](https://www.cookiebot.com/) SDK.
 
 | Version | Angular support |
 |---------|:---------------:|
+| ^5.0.0  |     ^18.0.0     |
 | ^4.0.0  |     ^17.0.0     |
 | ^3.0.0  |     ^16.0.0     |
 | 2.3.0   |   8.2.14 - 15   |
@@ -62,15 +63,11 @@ NB! If you set this config to false, no other config parameter will have effect,
 ### 2. Import package
 
 ```typescript
-// app.module.ts
-import { NgxCookiebotModule } from '@halloverden/ngx-cookiebot';
+// app.config.ts
+import { ngxCookiebotProvider } from '@halloverden/ngx-cookiebot';
 import { CookiebotConfig } from '@config/cookiebot.config';
 
-@NgModule({
-  imports: [
-    NgxCookiebotModule.forRoot(CookiebotConfig)
-  ]
-})
+ngxCookiebotProvider(CookiebotConfig)
 ```
 
 ## Usage
@@ -83,14 +80,14 @@ To interact with the "cookiebot" object, NgxCookiebot comes with a service that 
 ```typescript
 // whatever.ts
 ...
-constructor(private _cookieBotService: NgxCookiebotService) {}
+#cookiebotService = inject(NgxCookiebotService);
 ...
-this._cookieBotService.onServiceReady$.pipe(
+this.#cookiebotService.onServiceReady$.pipe(
   filter((ready: boolean) => {
     return ready;
   })
 ).subscribe(() => {
-  // this._cookieBotService.cookiebot is available
+  // this.#cookiebotService.cookiebot is available
 });
 ...
 ```
@@ -126,10 +123,10 @@ Usage example:
 ```typescript
 // whatever.ts
 ...
-this._cookieBotService.onConsentReady$.subscribe(
+this.#cookiebotService.onConsentReady$.subscribe(
   // Consent ready
-  console.log(this._cookieBotService.cookiebot.consent)
-)
+  console.log(this.#cookiebotService.cookiebot.consent)
+);
 ...
 ```
 

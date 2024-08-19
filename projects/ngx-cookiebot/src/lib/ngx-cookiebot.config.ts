@@ -1,6 +1,3 @@
-/**
- *
- */
 export abstract class NgxCookiebotConfig {
   blockingMode: 'auto' | 'manual' | string;
   consentMode?: 'disabled';
