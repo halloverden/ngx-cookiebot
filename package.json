@@ -3,8 +3,8 @@
   "scripts": {
     "ng": "ng",
     "lib:build": "ng build @halloverden/ngx-cookiebot",
-    "lint": "prettier ./",
-    "lint:fix": "prettier -w ./"
+    "prettier": "prettier ./",
+    "prettier:fix": "prettier -w ./"
   },
   "private": true,
   "dependencies": {
