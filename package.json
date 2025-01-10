@@ -5,7 +5,7 @@
     "lib:build": "ng build @halloverden/ngx-cookiebot",
     "lib:publish": "cd dist/ngx-cookiebot && npm publish",
     "prettier": "prettier ./",
-    "prettier:fix": "prettier -w ./"
+    "prettier:fix": "npm run prettier -- -w"
   },
   "private": true,
   "dependencies": {
