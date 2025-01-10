@@ -5,7 +5,8 @@ An Angular wrapper around the [Cookiebot](https://www.cookiebot.com/) SDK.
 ## Angular support
 
 | Version | Angular support |
-| ------- | :-------------: |
+|---------|:---------------:|
+| ^6.0.0  |     ^19.0.0     |
 | ^5.0.0  |     ^18.0.0     |
 | ^4.0.0  |     ^17.0.0     |
 | ^3.0.0  |     ^16.0.0     |
