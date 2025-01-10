@@ -14,7 +14,6 @@ import { NgxCookiebotConfig } from './ngx-cookiebot.config';
   template: '<div #ngxCookiebot></div>',
   styles: [':host { display: block }'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
 })
 export class NgxCookiebotComponent implements OnInit {
   #ngxCookiebotConfig = inject(NgxCookiebotConfig);

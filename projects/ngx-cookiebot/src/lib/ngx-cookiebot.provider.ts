@@ -1,8 +1,9 @@
 import {
-  APP_INITIALIZER,
   EnvironmentProviders,
+  inject,
   makeEnvironmentProviders,
   PLATFORM_ID,
+  provideAppInitializer,
   Type,
 } from '@angular/core';
 import { NgxCookiebotConfig } from './ngx-cookiebot.config';
@@ -19,11 +20,9 @@ export function ngxCookiebotProvider(
       useClass: NgxCookiebotService,
       deps: [NgxCookiebotConfig, PLATFORM_ID],
     },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: ngxCookiebotFactory,
-      deps: [NgxCookiebotService, PLATFORM_ID],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const initializerFn = ngxCookiebotFactory(inject(NgxCookiebotService));
+      return initializerFn();
+    }),
   ]);
 }
