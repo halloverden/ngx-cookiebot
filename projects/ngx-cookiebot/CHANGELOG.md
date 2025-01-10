@@ -1,5 +1,11 @@
 # Change log
 
+## 6.0.0
+- Supporting Angular 19
+
+## 5.0.0
+- Supporting Angular 18
+
 ## 4.0.0
 
 - Option for disabling (Thanks @mrbatista)
