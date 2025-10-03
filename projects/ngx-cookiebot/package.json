@@ -30,7 +30,7 @@
     "url": "https://github.com/halloverden/ngx-cookiebot/tree/main/projects/ngx-cookiebot"
   },
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0"
   }
 }

@@ -1,4 +1,4 @@
-FROM node:22-alpine AS dev
+FROM node:22.20.0-alpine AS dev
 
 # Add .bin folder in node_modules folder to path
 # Needed to use local ng etc.
